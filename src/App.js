@@ -1,7 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, Suspense } from 'react'
 import * as THREE from 'three'
-import { Canvas, useFrame, useThree } from 'react-three-fiber'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { Canvas, useFrame, useThree, useLoader } from 'react-three-fiber'
 import Controls from "./3D/OrbitControls"
+import Asset from "./3D/Asset"
 import Plane from "./3D/Plane"
 import Box from "./3D/Box"
 import './App.css';
@@ -31,7 +33,7 @@ function cameraMovement (position){
 }
 const Light = props => {
   //Create a PointLight and turn on shadows for the light
-  const light = new THREE.DirectionalLight(0xffffff,0.3, 100)
+  const light = new THREE.DirectionalLight(0xffffff,1, 100)
   props.position 
     ? light.position.set(...props.position)
     : light.position.set(-2, 3, 2)
@@ -58,6 +60,9 @@ function App() {
         {/* <spotLight position={[6,0, -1]} lookAt={[0,0,0]} castShadow={false} intensity={1} /> */}
         <Plane wireframe rotation={[-0.5 * Math.PI, 0, 0]} position={[0, -2, 0]} />
         <Box receiveShadow castShadow position={[0, -1, 0]} scale={[2,2,2]} />
+        <Suspense fallback={`<div>loading </div>`}>
+          <Asset position={[0,-1.8,-0.82]} scale={[0.5,0.5,0.5]} url="/models/brit/brit_sitting_wall.gltf" />
+        </Suspense>
         <Controls />
         <Light castShadow/>
         <Light position={[0, 1, -10]}/>
