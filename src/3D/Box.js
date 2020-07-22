@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react'
+import * as THREE from 'three'
 import { useFrame } from 'react-three-fiber'
+import LineSegments from './LineSegments'
 
 export default function Box(props) {
   // This reference will give us direct access to the mesh
@@ -10,18 +12,23 @@ export default function Box(props) {
   const [active, setActive] = useState(false)
 
   // Rotate mesh every frame, this is outside of React without overhead
-  useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.0015))
+  // useFrame(() => ( mesh.current.rotation.y += 0.0015))
 
   return (
-    <mesh
+    <>
+    {/* <mesh
       ref={mesh}
-      scale={active ? [1.5, 1.5, 1.5] : [1, 1, 1]}
       {...props}
-      onClick={(e) => setActive(!active)}
       onPointerOver={(e) => setHover(true)}
       onPointerOut={(e) => setHover(false)}>
-      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-      <meshStandardMaterial attach="material" color={hovered ? 'hotpink' : 'orange'} transparent opacity={0.9} />
-    </mesh>
+      <boxBufferGeometry 
+       polygonOffset={true} 
+       polygonOffsetFactor={1} 
+       polygonOffsetUnits={1}
+       attach="geometry" args={[1, 1, 1,5,5,5]} />
+      <meshStandardMaterial attach="material" color={hovered ? 0x000000 : 0xffffff} transparent opacity={1}  flatShading roughness={1} />
+    </mesh> */}
+    <LineSegments {...props} geometry={new THREE.BoxBufferGeometry(1,1,1,2,2,2)} color={0x009900} castShadow/>
+    </>
   )
 }
