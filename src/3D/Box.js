@@ -26,7 +26,7 @@ export default function Box(props) {
        polygonOffsetFactor={1} 
        polygonOffsetUnits={1}
        attach="geometry" args={[1, 1, 1,5,5,5]} />
-      <meshStandardMaterial attach="material" color={hovered ? 0x5959ff : 0x5959ff} transparent opacity={0.7}  flatShading roughness={0} />
+      <meshStandardMaterial attach="material" color={hovered ? 0x5959ff : 0x5959ff} emissive={0x5959ff} transparent opacity={0.4}  flatShading roughness={0} />
     </mesh>
     <LineSegments {...props} geometry={new THREE.BoxBufferGeometry(1,1,1,2,2,2)} color={0x009900} castShadow/>
     {/* <LineSegments {...props} geometry={new THREE.BoxBufferGeometry(1,1,1,10,10,10)} color={0x009900} castShadow/> */}

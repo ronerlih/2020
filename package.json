@@ -10,6 +10,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "react-three-fiber": "^4.2.17",
+    "stats.js": "^0.17.0",
     "three": "^0.118.3"
   },
   "scripts": {
