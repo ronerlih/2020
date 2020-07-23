@@ -6,6 +6,7 @@ import Controls from "./3D/OrbitControls"
 import Asset from "./3D/Asset"
 import Plane from "./3D/Plane"
 import Box from "./3D/Box"
+import MODEL_URL from "./models/brit/brit_sitting_wall.gltf"
 import './App.css';
 /* eslint-disable */
   Number.prototype.map = function (in_min, in_max, out_min, out_max) {
@@ -91,14 +92,14 @@ function App() {
         {/* rotate */}
         {/* <Camera position={[-1.1,0.44,7.6]} setCameraPosition={setCameraPosition} assetsLoaded={assetsLoaded} /> */}
         {/* far */}
-        <Camera position={[0,-1.3,16.6]} setCameraPosition={setCameraPosition} assetsLoaded={assetsLoaded} />
+        <Camera position={[0,-1.3,16000.6]} setCameraPosition={setCameraPosition} assetsLoaded={assetsLoaded} />
         
         <ambientLight intensity={0.4}  />
         {/* <spotLight position={[6,0, -1]} lookAt={[0,0,0]} castShadow={false} intensity={1} /> */}
         <Plane wireframe rotation={[-0.5 * Math.PI, 0, 0]} position={[0, -2, 0]} />
         <Box receiveShadow castShadow position={[0, -1, 0]} scale={[2,2,2]} />
         <Suspense fallback={`<div>loading </div>`}>
-          <Asset position={[0,-1.8,-0.82]} scale={[0.5,0.5,0.5]} url="/models/brit/brit_sitting_wall.gltf" setAssetsLoaded={setAssetsLoaded} />
+          <Asset position={[0,-1.8,-0.82]} scale={[0.5,0.5,0.5]} url={MODEL_URL} setAssetsLoaded={setAssetsLoaded} />
         </Suspense>
         <Controls />
         <Light castShadow/>
