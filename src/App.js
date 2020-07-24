@@ -49,7 +49,7 @@ function rotateCamera (position, turn_thresh){
 }
 function cameraMovementFar (position){
   const TURN_THRESH = 8.12;
-  const Y_THRESH = -1.62;
+  const Y_THRESH = -1.6;
   let {x,y,z} = position;
   if(z >= 0 ) {
     // y -= ((Math.sin(CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED)/20 ) - Math.cos( CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED)/20)
