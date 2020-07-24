@@ -39,18 +39,21 @@ function Camera(props) {
   return <perspectiveCamera ref={ref} {...props} args={[45, aspect, 1,20000]}  />
 }
 
-function cameraMovement (position){
+function rotateCamera (position, turn_thresh){
   let {x,y,z} = position;
-  x = x * Math.cos(CAMERA_SPEED * 10) + z * Math.sin(CAMERA_SPEED * 10);
-  z = z * Math.cos(CAMERA_SPEED * 10) - x * Math.sin(CAMERA_SPEED * 10);
+  const OFFSET_CAMERA_TURN = 5;
+  x = Math.sin(z.map(0,turn_thresh,0,Math.PI * 2)) * -0.3
+  // x = x * Math.cos(CAMERA_SPEED * OFFSET_CAMERA_TURN) + z * Math.sin(CAMERA_SPEED * OFFSET_CAMERA_TURN);
+  // z = z * Math.cos(CAMERA_SPEED * OFFSET_CAMERA_TURN) - x * Math.sin(CAMERA_SPEED * OFFSET_CAMERA_TURN);
   return {x,y,z}
 }
 function cameraMovementFar (position){
+  const TURN_THRESH = 4.12;
   let {x,y,z} = position;
   if(z >= 0.12 || x > 1 ) {
     // y -= ((Math.sin(CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED)/20 ) - Math.cos( CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED)/20)
     z =  z * Math.cos(CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED) - z * Math.sin(CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED)
-    if( z <= 8) return cameraMovement({x,y,z})
+    if( z <= TURN_THRESH) return rotateCamera({x,y,z}, TURN_THRESH)
   }
   //  else if (y >= -1.1){
   //   y -= (Math.cos( (z -1 ) * CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED))
@@ -92,7 +95,7 @@ function App() {
         {/* rotate */}
         {/* <Camera position={[-1.1,0.44,7.6]} setCameraPosition={setCameraPosition} assetsLoaded={assetsLoaded} /> */}
         {/* far */}
-        <Camera position={[0,-1.3,16000.6]} setCameraPosition={setCameraPosition} assetsLoaded={assetsLoaded} />
+        <Camera position={[0,-1.3,8.6]} setCameraPosition={setCameraPosition} assetsLoaded={assetsLoaded} />
         
         <ambientLight intensity={0.4}  />
         {/* <spotLight position={[6,0, -1]} lookAt={[0,0,0]} castShadow={false} intensity={1} /> */}
