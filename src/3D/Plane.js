@@ -4,7 +4,7 @@ import * as THREE from 'three';
 const FLOOR_WIDTH = 50
 const FLOOR_HEIGHT = 50
 
-export default function Plane({ ...props }) {
+export default function Plane(props) {
    return (
       <>
       <mesh {...props} receiveShadow>
@@ -15,7 +15,7 @@ export default function Plane({ ...props }) {
       <mesh {...props} receiveShadow>
          <lineSegments>
             <wireframeGeometry attach="geometry" args={[new THREE.PlaneGeometry(FLOOR_WIDTH,FLOOR_HEIGHT,FLOOR_WIDTH,FLOOR_HEIGHT)]} />
-            <meshBasicMaterial attach="material" color={0x009900} />
+            <meshBasicMaterial attach="material" color={props.color} />
          </lineSegments> 
      </mesh> }
      </>
