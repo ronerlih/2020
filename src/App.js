@@ -29,7 +29,7 @@ function Camera(props) {
   useFrame(() => {
 
     ref.current.updateMatrixWorld()
-    ref.current.lookAt( [0, -1, -1] );
+    ref.current.lookAt( [0, -.8, -1] );
     // move camera
     if(props.assetsLoaded){
       // console.log(ref.current)
