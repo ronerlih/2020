@@ -29,7 +29,7 @@ function Camera(props) {
   useFrame(() => {
 
     ref.current.updateMatrixWorld()
-    ref.current.lookAt( [0, -1, -1] );
+    ref.current.lookAt( [0, -0.8, -1] );
     // move camera
     if(props.assetsLoaded){
       // console.log(ref.current)
@@ -67,20 +67,20 @@ function rotateCamera (position, turn_thresh){
 }
 function cameraMovementFar (position){
   const TURN_THRESH = 12.12;
-  const Y_THRESH = -1.5;
+  const Y_THRESH = -1.6;
   let {x,y,z} = position;
   if(z >= 0 ) {
     // shady practice ahead..
 
     // y -= ((Math.sin(CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED)/20 ) - Math.cos( CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED)/20)
-    if(z > 200){
+    if(z > 250){
       z =  z * Math.cos(CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED_FAST) - z * Math.sin( CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED_FAST) 
       CAMERA_SPEED_FAST += CAMERA_SPEED_FAST * 0.001;
     }
     else{
       z =  z * Math.cos(CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED) - z * Math.sin( CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED) 
     }
-    if( y > Y_THRESH) y = z.map(100,400,Y_THRESH,400)
+    if( y > Y_THRESH && z.map(100,400,Y_THRESH,400) > Y_THRESH) y = z.map(100,400,Y_THRESH,400)
     if( z <= TURN_THRESH) return rotateCamera({x,y,z}, TURN_THRESH)
   }
   if (z.toFixed(2) == 0){
@@ -154,7 +154,7 @@ function App() {
         {/* <CameraPath pathNodes={pathNodes} /> */}
         <ambientLight intensity={0.4}  />
         {/* <spotLight position={[6,0, -1]} lookAt={[0,0,0]} castShadow={false} intensity={1} /> */}
-        <Plane name="Floor" color={GRID_COLOR} wireframe rotation={[-0.5 * Math.PI, 0, 0]} position={[0, -2, 0]}  scale={[2,2,2]}/>
+        <Plane name="Floor" color={GRID_COLOR} wireframe rotation={[-0.5 * Math.PI, 0, 0]} position={[0, -2, 0]}  scale={[1,1,1]}/>
         <Box name="Box" color={GRID_COLOR} receiveShadow castShadow position={[0, -1.0001, 0]} scale={[2,2,2]} />
         <Suspense fallback={`<div>loading </div>`}>
           <Asset name="Brit" position={[0,-1.8,-0.771]} rotation={[0,0.1,0]} scale={[0.5,0.5,0.5]} url={MODEL_URL} setAssetsLoaded={setAssetsLoaded} />
