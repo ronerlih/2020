@@ -66,14 +66,14 @@ function rotateCamera (position, turn_thresh){
   return {x,y,z}
 }
 function cameraMovementFar (position){
-  const TURN_THRESH = 8.12;
-  const Y_THRESH = -1.4;
+  const TURN_THRESH = 12.12;
+  const Y_THRESH = -1.5;
   let {x,y,z} = position;
   if(z >= 0 ) {
     // shady practice ahead..
 
     // y -= ((Math.sin(CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED)/20 ) - Math.cos( CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED)/20)
-    if(z > 400){
+    if(z > 200){
       z =  z * Math.cos(CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED_FAST) - z * Math.sin( CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED_FAST) 
       CAMERA_SPEED_FAST += CAMERA_SPEED_FAST * 0.001;
     }
