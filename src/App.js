@@ -80,7 +80,11 @@ function cameraMovementFar (position){
     else{
       z =  z * Math.cos(CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED) - z * Math.sin( CAMERA_MOVEMENT_OFFSET * CAMERA_SPEED) 
     }
-    if( y > Y_THRESH && z.map(100,400,Y_THRESH,400) > Y_THRESH) y = z.map(100,400,Y_THRESH,400)
+    if( y > Y_THRESH && z.map(100,400,Y_THRESH, 200) > Y_THRESH) {
+      y = z.map(100,400,Y_THRESH,400)
+    } else {
+      y = -1.61
+    }
     if( z <= TURN_THRESH) return rotateCamera({x,y,z}, TURN_THRESH)
   }
   if (z.toFixed(2) == 0){
