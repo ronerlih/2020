@@ -157,7 +157,7 @@ function App() {
         <Plane name="Floor" color={GRID_COLOR} wireframe rotation={[-0.5 * Math.PI, 0, 0]} position={[0, -2, 0]}  scale={[2,2,2]}/>
         <Box name="Box" color={GRID_COLOR} receiveShadow castShadow position={[0, -1.0001, 0]} scale={[2,2,2]} />
         <Suspense fallback={`<div>loading </div>`}>
-          <Asset name="Brit" position={[0,-1.6,-0.771]} rotation={[0,0.1,0]} scale={[0.5,0.5,0.5]} url={MODEL_URL} setAssetsLoaded={setAssetsLoaded} />
+          <Asset name="Brit" position={[0,-1.8,-0.771]} rotation={[0,0.1,0]} scale={[0.5,0.5,0.5]} url={MODEL_URL} setAssetsLoaded={setAssetsLoaded} />
         </Suspense>
         <Controls />
         <Light castShadow/>
