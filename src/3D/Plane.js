@@ -15,7 +15,11 @@ export default function Plane(props) {
       <mesh {...props} receiveShadow>
          <lineSegments>
             <wireframeGeometry attach="geometry" args={[new THREE.PlaneGeometry(FLOOR_WIDTH,FLOOR_HEIGHT,FLOOR_WIDTH,FLOOR_HEIGHT)]} />
-            <lineBasicMaterial attach="material" color={props.color} linewidth={4}  />
+            <lineBasicMaterial 
+               attach="material" 
+               color={props.color} 
+               // linewidth={1} 
+                />
          </lineSegments> 
      </mesh> }
      </>
