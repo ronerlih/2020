@@ -22,12 +22,13 @@ export default function Box(props) {
       onPointerOver={(e) => setHover(true)}
       onPointerOut={(e) => setHover(false)}>
       <boxBufferGeometry 
-       polygonOffset={true} 
+      //  polygonOffset={true} 
        polygonOffsetFactor={1} 
        polygonOffsetUnits={1}
        attach="geometry" args={[1, 1, 1,5,5,5]} />
-      <meshStandardMaterial attach="material" color={hovered ? 0x5959ff : 0x5959ff} emissive={0x5959ff} transparent opacity={0.4}  flatShading roughness={0} 
-      // side={THREE.DoubleSide}
+  
+      <meshStandardMaterial attach="material" color={hovered ? 0x5959ff : 0x5959ff} emissive={0x5959ff} transparent opacity={props.noOpacity ? 0 : 0.4}  flatShading roughness={0} 
+      side={THREE.DoubleSide}
        />
     </mesh>
     

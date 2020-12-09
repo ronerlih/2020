@@ -7,8 +7,9 @@ import Asset from "./3D/Asset";
 import Plane from "./3D/Plane";
 import Box from "./3D/Box";
 import ErrorBoundary from "./components/ErrorBoundary";
+import Blurb from "./components/Blurb";
 import MODEL_URL from "./models/brit/brit_sitting_wall.gltf";
-import AUDIO_URL from "./audio/heartbeat_sound.mp3";
+import AUDIO_URL from "./audio/hearbeat_trimmed.mp3";
 import { Sphere, PositionalAudio, OrbitControls } from "drei";
 
 import "./App.css";
@@ -59,12 +60,12 @@ function PlaySound({ url }) {
 				// position={CAMERA_POSITION}
 				position={BRIT_POSITION}
 				url={url}
-				distance={20}
+				distance={5}
 				// distance={40}
             ref={sound}
             setDistanceModel={"exponential"}
             // rolloffFactor={Infinity}
-            // rolloffFactor={1}
+            rolloffFactor={1000}
             setVolume={0.5}
 			/>
 		</Suspense>
@@ -189,10 +190,14 @@ function App() {
 
 	return (
 		<div className="App">
-			<header className="App-header">Sandbox</header>
-			<div style={{ textAlign: "left", color: "cornflowerblue", padding: 10 }}>
-				[log] camera pos: {`${[...cameraPosition]}`}
-			</div>
+         {/* NAV */}
+			{/* <header className="App-header">Sandbox</header> */}
+
+			{/* CAMERA LOG */}
+         {/* <div style={{ textAlign: "left", color: "cornflowerblue", padding: 10 }}> */}
+				{/* [log] camera pos: {`${[...cameraPosition]}`} */}
+			{/* </div> */}
+
 			<div className="frame-edge">
 				<div className="frame">
 					<div className="canvas-container">
@@ -217,7 +222,7 @@ function App() {
 								wireframe
 								rotation={[-0.5 * Math.PI, 0, 0]}
 								position={[0, -2, 0]}
-								scale={[4, 1, 1]}
+								scale={[4, 4, 1]}
 							/>
 							<Box
 								name="Box"
@@ -227,6 +232,20 @@ function App() {
 								position={[0, -1.0001, 0]}
 								scale={[2, 2, 2]}
 							/>
+							<Box
+								name="BoxGridCrisCross"
+								color={GRID_COLOR}
+								receiveShadow
+                        castShadow
+                        noOpacity={true}
+								position={[0, -1.0001, 0]}
+								scale={[-2, 2, 2]}
+							/>
+                      {/* <box3Helper 
+                        
+                        args={{ box: new THREE.BoxBufferGeometry(1,1,1,2,2,2) , color: 0xff0000 }}>
+                           
+                        </box3Helper> */}
 							<Suspense fallback={`<div>loading </div>`}>
 								<Asset
 									name="Brit"
@@ -245,7 +264,7 @@ function App() {
 					</div>
 				</div>
 			</div>
-			<div className="frame-title">to be determined.</div>
+			<Blurb />
 		</div>
 	);
 }
