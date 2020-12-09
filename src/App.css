@@ -6,11 +6,32 @@
   max-height: 100vh;
   overflow: hidden;
 }
+.canvas-container{
+   border: 1px solid rgb(113, 113, 113);
 
+}
+.frame{
+  border: 15px inset;
+}
+.frame-edge{
+  border:4px solid black;
+
+  max-height:calc(100vh - 60px);
+  width: calc(100vw - 60px);
+  margin:auto;
+  margin-top:25px;
+ 
+}
+.frame-title{
+  margin:20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.6em;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -27,9 +48,8 @@
 }
 .canvas {
   /* float: left!important; */
-  height:100vh!important;
-  position: absolute!important;
-  top:0;
+  height:42vw!important;
+
 }
 
 .App-link {
